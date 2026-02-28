@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever With You ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e8,#e0c3fc,#c3f0ff);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:#fff;
+overflow-x:hidden;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px 20px;
+text-align:center;
+position:relative;
+}
+
+h1{
+font-size:2.5rem;
+margin-bottom:20px;
+animation:float 3s ease-in-out infinite;
+}
+
+p{
+max-width:700px;
+font-size:1.2rem;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.nav{
+margin-top:20px;
+}
+
+button{
+padding:10px 20px;
+margin:5px;
+border:none;
+border-radius:25px;
+background:#ff85a2;
+color:#fff;
+font-size:1rem;
+cursor:pointer;
+transition:0.4s;
+}
+
+button:hover{
+background:#ff4d88;
+transform:scale(1.1);
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+padding:20px;
+border-radius:20px;
+margin:10px;
+backdrop-filter:blur(10px);
+transition:0.6s;
+transform-style:preserve-3d;
+}
+
+.card:hover{
+transform:rotateY(10deg) rotateX(5deg) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+.grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+/* Fade animation */
+.fade{
+opacity:0;
+transform:translateY(20px);
+transition:1s;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Floating hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:rise 8s linear infinite;
+opacity:0.7;
+}
+
+@keyframes rise{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+/* Kawaii Cat */
+.cat{
+font-size:3rem;
+animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+audio{
+position:fixed;
+bottom:10px;
+right:10px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+h1{font-size:1.8rem;}
+p{font-size:1rem;}
+.grid{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop controls>
+<source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+</audio>
+
+<!-- HOME -->
+<section id="home" class="fade">
+<h1>Welcome My Love ❤️</h1>
+<p>You are the most beautiful part of my life.
+Every heartbeat whispers your name,
+and every sunrise reminds me how lucky I am to have you.</p>
+<div class="nav">
+<button onclick="nextPage()">Next ➜</button>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="fade">
+<h1>About Us 💕</h1>
+<div class="card">
+<p>From strangers to soulmates,
+our story is my favorite love story.
+You are my happiness, my comfort, and my forever home.</p>
+</div>
+<div class="nav">
+<button onclick="prevPage()">⬅ Previous</button>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories" class="fade">
+<h1>Our Sweet Memories 🌸</h1>
+<div class="grid">
+<div class="card">The first smile we shared 💫</div>
+<div class="card">Late night talks 🌙</div>
+<div class="card">Laughing without reason 💖</div>
+</div>
+<div class="nav">
+<button onclick="prevPage()">⬅ Previous</button>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+</section>
+
+<!-- SPECIAL -->
+<section id="special" class="fade">
+<h1>You Are My Special One 💗</h1>
+<div class="cat">(=^･ω･^=)</div>
+<p>You make my world brighter,
+my days softer,
+and my heart happier every single moment.</p>
+<div class="nav">
+<button onclick="prevPage()">⬅ Previous</button>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+</section>
+
+<!-- FOREVER -->
+<section id="forever" class="fade">
+<h1>Forever & Always 💍</h1>
+<div class="card">
+<p>No matter where life takes us,
+I promise to hold your hand,
+stand beside you,
+and love you endlessly — forever and always.</p>
+</div>
+<div class="nav">
+<button onclick="prevPage()">⬅ Previous</button>
+<button onclick="goHome()">Back to Home ❤️</button>
+</div>
+</section>
+
+<script>
+const sections = document.querySelectorAll("section");
+let current = 0;
+
+function showPage(index){
+sections.forEach((sec,i)=>{
+sec.style.display = (i===index)?"flex":"none";
+});
+sections[index].classList.add("show");
+}
+
+function nextPage(){
+if(current < sections.length-1){
+current++;
+showPage(current);
+}
+}
+
+function prevPage(){
+if(current > 0){
+current--;
+showPage(current);
+}
+}
+
+function goHome(){
+current = 0;
+showPage(current);
+}
+
+showPage(current);
+
+/* Fade on load */
+window.addEventListener("load",()=>{
+sections[current].classList.add("show");
+});
+
+/* Floating Hearts Generator */
+function createHeart(){
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.style.animationDuration=(Math.random()*5+5)+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),8000);
+}
+
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
