@@ -61,117 +61,27 @@ padding:10px 20px;
 margin:5px;
 border:none;
 border-radius:25px;
-background:#ff85a2;
-color:#fff;
-font-size:1rem;
-cursor:pointer;
-transition:0.4s;
 }
 
-button:hover{
-background:#ff4d88;
-transform:scale(1.1);
-}
-
-.card{
-background:rgba(255,255,255,0.15);
-padding:20px;
-border-radius:20px;
-margin:10px;
-backdrop-filter:blur(10px);
-transition:0.6s;
-transform-style:preserve-3d;
-}
-
-.card:hover{
-transform:rotateY(10deg) rotateX(5deg) scale(1.05);
-box-shadow:0 20px 40px rgba(0,0,0,0.3);
-}
-
-.grid{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-}
-
-/* Fade animation */
-.fade{
-opacity:0;
-transform:translateY(20px);
-transition:1s;
-}
-
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* Floating hearts */
 .heart{
 position:fixed;
-bottom:-20px;
-font-size:20px;
-animation:rise 8s linear infinite;
-opacity:0.7;
+top:0;
+pointer-events:none;
+animation:floatHeart linear infinite;
 }
 
-@keyframes rise{
+@keyframes floatHeart{
 0%{transform:translateY(0);}
 100%{transform:translateY(-100vh);}
 }
-
-/* Kawaii Cat */
-.cat{
-font-size:3rem;
-animation:bounce 1.5s infinite;
-}
-
-@keyframes bounce{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
-}
-
-audio{
-position:fixed;
-bottom:10px;
-right:10px;
-}
-
-/* Responsive */
-@media(max-width:768px){
-h1{font-size:1.8rem;}
-p{font-size:1rem;}
-.grid{flex-direction:column;}
-}
 </style>
 </head>
-
 <body>
 
 <!-- HOME -->
 <section id="home" class="fade">
-<h1>Welcome My Love ❤️</h1>
-<p>You are the most beautiful part of my life.
-Every heartbeat whispers your name,
-and every sunrise reminds me how lucky I am to have you.</p>
-<div class="nav">
-<button onclick="nextPage()">Next ➜</button>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="fade">
-<h1>About Us 💕</h1>
-<div class="card">
-<p>From strangers to soulmates,
-our story is my favorite love story.
-You are my happiness, my comfort, and my forever home.</p>
-</div>
+<h1>Forever With You ❤️</h1>
+<p>My beloved wife, my partner for life, my best friend — I cherish every moment with you and look forward to many more together.</p>
 <div class="nav">
 <button onclick="prevPage()">⬅ Previous</button>
 <button onclick="nextPage()">Next ➜</button>
@@ -191,14 +101,13 @@ You are my happiness, my comfort, and my forever home.</p>
 <button onclick="nextPage()">Next ➜</button>
 </div>
 </section>
-
 <!-- SPECIAL -->
 <section id="special" class="fade">
 <h1>You Are My Special One 💗</h1>
 <div class="cat">(=^･ω･^=)</div>
 <p>You make my world brighter,
 my days softer,
-and my heart happier every single moment.</p>
+and my heart happier every single moment as my beloved wife.</p>
 <div class="nav">
 <button onclick="prevPage()">⬅ Previous</button>
 <button onclick="nextPage()">Next ➜</button>
@@ -209,10 +118,9 @@ and my heart happier every single moment.</p>
 <section id="forever" class="fade">
 <h1>Forever & Always 💍</h1>
 <div class="card">
-<p>No matter where life takes us,
-I promise to hold your hand,
+<p>I promise to hold your hand,
 stand beside you,
-and love you endlessly — forever and always.</p>
+and love you endlessly — as my wife, forever and always.</p>
 </div>
 <div class="nav">
 <button onclick="prevPage()">⬅ Previous</button>
@@ -230,8 +138,7 @@ sec.style.display = (i===index)?"flex":"none";
 });
 sections[index].classList.add("show");
 }
-
-function nextPage(){
+  function nextPage(){
 if(current < sections.length-1){
 current++;
 showPage(current);
@@ -256,13 +163,17 @@ showPage(current);
 window.addEventListener("load",()=>{
 sections[current].classList.add("show");
 });
+  /* Fade on load */
+window.addEventListener("load",()=>{
+sections[current].classList.add("show");
+});
 
 /* Floating Hearts Generator */
 function createHeart(){
 const heart = document.createElement("div");
 heart.classList.add("heart");
 heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"vw";
+heart.style.left=Math.random()*100+"vw"
 heart.style.fontSize=(Math.random()*20+10)+"px";
 heart.style.animationDuration=(Math.random()*5+5)+"s";
 document.body.appendChild(heart);
