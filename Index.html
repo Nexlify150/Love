@@ -1,188 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forever With You ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Wife</title>
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-scroll-behavior:smooth;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
 
-body{
-background:linear-gradient(135deg,#ffd6e8,#e0c3fc,#c3f0ff);
-background-size:400% 400%;
-animation:bgMove 12s ease infinite;
-color:#fff;
-overflow-x:hidden;
-}
+        /* --- ANIMATED BACKGROUND --- */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -2;
+        }
 
-@keyframes bgMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-section{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:40px 20px;
-text-align:center;
-position:relative;
-}
+        /* --- FLOATING HEARTS CONTAINER --- */
+        #hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
 
-h1{
-font-size:2.5rem;
-margin-bottom:20px;
-animation:float 3s ease-in-out infinite;
-}
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp 10s linear infinite;
+            font-size: 20px;
+        }
 
-p{
-max-width:700px;
-font-size:1.2rem;
-margin-bottom:30px;
-line-height:1.6;
-}
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
 
-.nav{
-margin-top:20px;
-}
+        /* --- MAIN CONTAINER --- */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            height: 80vh;
+            position: relative;
+        }
 
-button{
-padding:10px 20px;
-margin:5px;
-border:none;
-border-radius:25px;
-}
+        /* --- PAGE SECTIONS --- */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            visibility: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
 
-.heart{
-position:fixed;
-top:0;
-pointer-events:none;
-animation:floatHeart linear infinite;
-}
+        .page.active {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
 
-@keyframes floatHeart{
-0%{transform:translateY(0);}
-100%{transform:translateY(-100vh);}
-}
-</style>
+        .page.exit {
+            opacity: 0;
+            transform: translateX(-50px);
+            visibility: hidden;
+        }
+
+        /* --- TYPOGRAPHY & ELEMENTS --- */
+        h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        input {
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            width: 80%;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        input:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            padding: 12px 40px;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* --- FINAL PAGE SPECIALS --- */
+        .final-heart {
+            font-size: 5rem;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
+            color: #ff4757;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1rem; }
+            .page { padding: 1.5rem; }
+            input { width: 90%; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HOME -->
-<section id="home" class="fade">
-<h1>Forever With You ❤️</h1>
-<p>My beloved wife, my partner for life, my best friend — I cherish every moment with you and look forward to many more together.</p>
-<div class="nav">
-<button onclick="prevPage()">⬅ Previous</button>
-<button onclick="nextPage()">Next ➜</button>
-</div>
-</section>
+    <!-- Animated Background -->
+    <div class="background"></div>
+    
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
 
-<!-- MEMORIES -->
-<section id="memories" class="fade">
-<h1>Our Sweet Memories 🌸</h1>
-<div class="grid">
-<div class="card">The first smile we shared 💫</div>
-<div class="card">Late night talks 🌙</div>
-<div class="card">Laughing without reason 💖</div>
-</div>
-<div class="nav">
-<button onclick="prevPage()">⬅ Previous</button>
-<button onclick="nextPage()">Next ➜</button>
-</div>
-</section>
-<!-- SPECIAL -->
-<section id="special" class="fade">
-<h1>You Are My Special One 💗</h1>
-<div class="cat">(=^･ω･^=)</div>
-<p>You make my world brighter,
-my days softer,
-and my heart happier every single moment as my beloved wife.</p>
-<div class="nav">
-<button onclick="prevPage()">⬅ Previous</button>
-<button onclick="nextPage()">Next ➜</button>
-</div>
-</section>
+    <div class="container">
+        
+        <!-- PAGE 1: Welcome & Input -->
+        <div id="page1" class="page active">
+            <h1>Welcome My Lovely Wife ❤️</h1>
+            <p>Before we begin, I need to know who I am writing this to...</p>
+            <input type="text" id="wifeNameInput" placeholder="Enter your name here..." autocomplete="off">
+            <button onclick="goToPage2()">Confirm</button>
+        </div>
 
-<!-- FOREVER -->
-<section id="forever" class="fade">
-<h1>Forever & Always 💍</h1>
-<div class="card">
-<p>I promise to hold your hand,
-stand beside you,
-and love you endlessly — as my wife, forever and always.</p>
-</div>
-<div class="nav">
-<button onclick="prevPage()">⬅ Previous</button>
-<button onclick="goHome()">Back to Home ❤️</button>
-</div>
-</section>
+        <!-- PAGE 2: Romantic Paragraph -->
+        <div id="page2" class="page">
+            <h1>My Dearest Love</h1>
+            <p id="romanticText">
+                <!-- Text injected via JS -->
+            </p>
+            <button onclick="goToPage3()">Next</button>
+        </div>
 
-<script>
-const sections = document.querySelectorAll("section");
-let current = 0;
+        <!-- PAGE 3: Funny Paragraph -->
+        <div id="page3" class="page">
+            <h1>Life With You</h1>
+            <p id="funnyText">
+                <!-- Text injected via JS -->
+            </p>
+            <button onclick="goToPage4()">Next</button>
+        </div>
 
-function showPage(index){
-sections.forEach((sec,i)=>{
-sec.style.display = (i===index)?"flex":"none";
-});
-sections[index].classList.add("show");
-}
-  function nextPage(){
-if(current < sections.length-1){
-current++;
-showPage(current);
-}
-}
+        <!-- PAGE 4: Final Promise -->
+        <div id="page4" class="page">
+            <div class="final-heart">❤️</div>
+            <h1>My Promise to You</h1>
+            <p id="promiseText">
+                <!-- Text injected via JS -->
+            </p>
+            <button onclick="celebrate()">Forever & Always</button>
+        </div>
 
-function prevPage(){
-if(current > 0){
-current--;
-showPage(current);
-}
-}
+    </div>
 
-function goHome(){
-current = 0;
-showPage(current);
-}
+    <script>
+        // --- VARIABLES ---
+        let wifeName = "";
+        const pages = document.querySelectorAll('.page');
+        const heartsContainer = document.getElementById('hearts-container');
 
-showPage(current);
+        // --- TEXT CONTENT ---
+        const romanticText = (name) => `
+            My dearest <strong>${name}</strong>, you are the light of my life and the love of my heart. 
+            Every day with you feels like a beautiful dream I never want to wake up from. 
+            Your smile is my favorite sight, and your laughter is the sweetest melody I know. 
+            Thank you for being the incredible woman that you are.
+        `;
 
-/* Fade on load */
-window.addEventListener("load",()=>{
-sections[current].classList.add("show");
-});
-  /* Fade on load */
-window.addEventListener("load",()=>{
-sections[current].classList.add("show");
-});
+        const funnyText = (name) => `
+            Let's be honest, <strong>${name}</strong>, life with you is quite the adventure! 
+            You might steal the blankets, but you also steal my heart completely. 
+            Even when we argue about what to watch on TV, I still think you're the most beautiful person in the world. 
+            You're my favorite person to annoy and my best friend to laugh with.
+        `;
 
-/* Floating Hearts Generator */
-function createHeart(){
-const heart = document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=(Math.random()*20+10)+"px";
-heart.style.animationDuration=(Math.random()*5+5)+"s";
-document.body.appendChild(heart);
+        const promiseText = (name) => `
+            I promise to always love you, respect you, and support you through everything. 
+            No matter what life throws at us, I will be right here by your side. 
+            You are my partner, my soulmate, and my forever. 
+            I love you more than words can say, <strong>${name}</strong>.
+        `;
 
-setTimeout(()=>heart.remove(),8000);
-}
+        // --- FUNCTIONS ---
 
-setInterval(createHeart,500);
-</script>
+        // 1. Initialize Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; // 5-8s duration
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            heartsContainer.appendChild(heart);
 
+            // Remove heart after animation to keep DOM clean
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Start creating hearts
+        setInterval(createHeart, 300);
+
+        // 2. Navigation Logic
+        function goToPage2() {
+            const input = document.getElementById('wifeNameInput');
+            if (input.value.trim() === "") {
+                alert("Please enter your name first! ❤️");
+                return;
+            }
+            wifeName = input.value.trim();
+            
+            // Inject text
+            document.getElementById('romanticText').innerHTML = romanticText(wifeName);
+            
+            // Transition
+            switchPage('page1', 'page2');
+        }
+
+        function goToPage3() {
+            document.getElementById('funnyText').innerHTML = funnyText(wifeName);
+            switchPage('page2', 'page3');
+        }
+
+        function goToPage4() {
+            document.getElementById('promiseText').innerHTML = promiseText(wifeName);
+            switchPage('page3', 'page4');
+        }
+
+        function celebrate() {
+            // Trigger a burst of hearts
+            for(let i=0; i<50; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+            alert("I Love You! ❤️");
+        }
+
+        function switchPage(fromId, toId) {
+            const fromPage = document.getElementById(fromId);
+            const toPage = document.getElementById(toId);
+
+            // Add exit class to current page
+            fromPage.classList.remove('active');
+            fromPage.classList.add('exit');
+
+            // Wait for transition to finish before showing next
+            setTimeout(() => {
+                fromPage.classList.remove('exit');
+                toPage.classList.add('active');
+            }, 500); // Matches CSS transition time roughly
+        }
+    </script>
 </body>
 </html>
